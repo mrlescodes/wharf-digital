@@ -1,19 +1,33 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
-import { visionTool } from '@sanity/vision';
 
-import { schemaTypes } from './schemas';
+import { singletonSchemaTypes, schemaTypes } from './schemas';
+import {
+  sanityStudioTitle,
+  sanityStudioProjectId,
+  sanityStudioDataset,
+  pageStructure,
+  singletonPlugin,
+} from './utils';
 
 export default defineConfig({
   name: 'default',
-  title: 'Wharf Digital',
 
-  projectId: '0i4qf844',
-  dataset: 'production',
+  title: sanityStudioTitle,
+  projectId: sanityStudioProjectId,
+  dataset: sanityStudioDataset,
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    // Customise the presentation of Singleton documents
+    structureTool({
+      structure: pageStructure(singletonSchemaTypes),
+    }),
+
+    // Configures the global "new document" button and document actions, to suit Singleton documents
+    singletonPlugin(singletonSchemaTypes.map((d) => d.name)),
+  ],
 
   schema: {
-    types: schemaTypes,
+    types: [...singletonSchemaTypes, ...schemaTypes],
   },
 });

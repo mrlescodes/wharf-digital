@@ -1,8 +1,10 @@
 import { defineCliConfig } from 'sanity/cli';
 
+import { sanityStudioProjectId, sanityStudioDataset } from './utils';
+
 export default defineCliConfig({
   api: {
-    projectId: '0i4qf844',
-    dataset: 'production',
+    projectId: sanityStudioProjectId,
+    dataset: sanityStudioDataset,
   },
 });

@@ -6,10 +6,12 @@ import page from './documents/page';
 import post from './documents/post';
 import project from './documents/project';
 
-export const schemaTypes = [
+export const singletonSchemaTypes = [
   // Singletons
   settings,
+];
 
+export const schemaTypes = [
   // Documents
   page,
   post,
