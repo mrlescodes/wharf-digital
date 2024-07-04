@@ -4,8 +4,8 @@ import { structureTool } from 'sanity/structure';
 import { singletonSchemaTypes, schemaTypes } from './schemas';
 import {
   sanityStudioTitle,
-  sanityStudioProjectId,
-  sanityStudioDataset,
+  sanityProjectId,
+  sanityDataset,
   pageStructure,
   singletonPlugin,
 } from './utils';
@@ -14,8 +14,8 @@ export default defineConfig({
   name: 'default',
 
   title: sanityStudioTitle,
-  projectId: sanityStudioProjectId,
-  dataset: sanityStudioDataset,
+  projectId: sanityProjectId,
+  dataset: sanityDataset,
 
   plugins: [
     // Customise the presentation of Singleton documents
