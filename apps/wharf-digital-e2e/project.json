@@ -1,0 +1,9 @@
+{
+  "name": "wharf-digital-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/wharf-digital-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["wharf-digital"],
+  "// targets": "to see all targets run: nx show project wharf-digital-e2e --web",
+  "targets": {}
+}
