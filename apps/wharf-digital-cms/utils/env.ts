@@ -1,16 +1,16 @@
 export const sanityStudioTitle = assertValue(
-  process.env.SANITY_STUDIO_TITLE,
-  'Missing environment variable: SANITY_STUDIO_TITLE',
+  process.env.SANITY_STUDIO_SANITY_STUDIO_TITLE,
+  'Missing environment variable: SANITY_STUDIO_SANITY_STUDIO_TITLE',
 );
 
-export const sanityStudioProjectId = assertValue(
-  process.env.SANITY_STUDIO_PROJECT_ID,
-  'Missing environment variable: SANITY_STUDIO_PROJECT_ID',
+export const sanityProjectId = assertValue(
+  process.env.SANITY_STUDIO_SANITY_PROJECT_ID,
+  'Missing environment variable: SANITY_STUDIO_SANITY_PROJECT_ID',
 );
 
-export const sanityStudioDataset = assertValue(
-  process.env.SANITY_STUDIO_DATASET,
-  'Missing environment variable: SANITY_STUDIO_DATASET',
+export const sanityDataset = assertValue(
+  process.env.SANITY_STUDIO_SANITY_DATASET,
+  'Missing environment variable: SANITY_STUDIO_SANITY_DATASET',
 );
 
 // TODO: Move to shared util lib
