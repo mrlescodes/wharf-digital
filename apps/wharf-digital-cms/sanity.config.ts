@@ -1,5 +1,6 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
+import { visionTool } from '@sanity/vision';
 
 import { singletonSchemaTypes, schemaTypes } from './schemas';
 import {
@@ -22,6 +23,8 @@ export default defineConfig({
     structureTool({
       structure: pageStructure(singletonSchemaTypes),
     }),
+
+    visionTool(),
 
     // Configures the global "new document" button and document actions, to suit Singleton documents
     singletonPlugin(singletonSchemaTypes.map((d) => d.name)),
