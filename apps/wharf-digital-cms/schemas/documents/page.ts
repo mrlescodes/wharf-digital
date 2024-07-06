@@ -23,6 +23,12 @@ export default defineType({
       },
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: 'modules',
+      title: 'Modules',
+      type: 'array',
+      of: [{ type: 'hero' }, { type: 'post-listing' }],
+    }),
   ],
   preview: {
     select: {
