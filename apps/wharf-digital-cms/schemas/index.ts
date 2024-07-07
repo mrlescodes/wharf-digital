@@ -5,6 +5,7 @@ import settings from './singletons/settings';
 import link from './objects/link';
 
 // Documents
+import navigation from './documents/navigation';
 import page from './documents/page';
 import post from './documents/post';
 import project from './documents/project';
@@ -23,6 +24,7 @@ export const schemaTypes = [
   link,
 
   // Documents
+  navigation,
   page,
   post,
   project,
