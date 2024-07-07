@@ -1,6 +1,9 @@
 // Singletons
 import settings from './singletons/settings';
 
+// Objects
+import link from './objects/link';
+
 // Documents
 import page from './documents/page';
 import post from './documents/post';
@@ -16,6 +19,9 @@ export const singletonSchemaTypes = [
 ];
 
 export const schemaTypes = [
+  // Objects
+  link,
+
   // Documents
   page,
   post,
