@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 import { ScrollText } from 'lucide-react';
 
 export default defineType({
-  name: 'post-listing',
+  name: 'postListing',
   title: 'Post Listing',
   type: 'object',
   icon: ScrollText,

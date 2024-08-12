@@ -27,7 +27,7 @@ export default defineType({
       name: 'modules',
       title: 'Modules',
       type: 'array',
-      of: [{ type: 'hero' }, { type: 'post-listing' }],
+      of: [{ type: 'hero' }, { type: 'postListing' }],
     }),
   ],
   preview: {

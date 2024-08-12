@@ -6,14 +6,18 @@ export default defineType({
   title: 'Settings',
   type: 'document',
   icon: Settings,
-  groups: [{ name: 'general', title: 'General', default: true }],
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
-      group: 'general',
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'headerMenu',
+      title: 'Header Menu',
+      type: 'reference',
+      to: [{ type: 'navigation' }],
     }),
   ],
 });
