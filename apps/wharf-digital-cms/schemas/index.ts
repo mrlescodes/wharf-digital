@@ -9,6 +9,7 @@ import navigation from './documents/navigation';
 import page from './documents/page';
 import post from './documents/post';
 import project from './documents/project';
+import teamMember from './documents/team-member';
 
 // Modules
 import hero from './modules/hero';
@@ -28,6 +29,7 @@ export const schemaTypes = [
   page,
   post,
   project,
+  teamMember,
 
   // Modules
   hero,
