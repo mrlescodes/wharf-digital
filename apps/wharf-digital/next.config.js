@@ -20,9 +20,6 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    taint: true,
-  },
 };
 
 const plugins = [
