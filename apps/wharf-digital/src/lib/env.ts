@@ -1,37 +1,24 @@
-import 'server-only';
-
-import { experimental_taintUniqueValue } from 'react';
-
-import { assertValue } from './utils';
-
-export const apiVersion =
-  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-06-27';
-
-export const dataset = assertValue(
-  process.env.NEXT_PUBLIC_SANITY_DATASET,
-  'Missing environment variable: NEXT_PUBLIC_SANITY_DATASET'
-);
-
-export const projectId = assertValue(
+export const sanityProjectId = assertValue(
   process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   'Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID'
 );
 
-export const token = assertValue(
-  process.env.SANITY_API_READ_TOKEN,
-  'Missing environment variable: SANITY_API_READ_TOKEN'
+export const sanityDataset = assertValue(
+  process.env.NEXT_PUBLIC_SANITY_DATASET,
+  'Missing environment variable: NEXT_PUBLIC_SANITY_DATASET'
 );
 
-experimental_taintUniqueValue(
-  'Do not pass the sanity API read token to the client.',
-  process,
-  token
-);
+export const sanityApiVersion =
+  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-08-01';
 
-export const useCdn = false;
+export const sanityStudioUrl =
+  process.env.NEXT_PUBLIC_SANITY_STUDIO_URL || 'http://localhost:3333';
 
-const VERCEL_URL = process.env.NEXT_PUBLIC_VERCEL_URL
-  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-  : '';
+// TODO: Move to shared util lib
+function assertValue<T>(v: T | undefined, errorMessage: string): T {
+  if (v === undefined) {
+    throw new Error(errorMessage);
+  }
 
-export const WEBAPP_URL = VERCEL_URL || 'http://localhost:3000';
+  return v;
+}

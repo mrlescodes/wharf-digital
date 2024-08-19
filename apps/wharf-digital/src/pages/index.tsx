@@ -1,8 +1,8 @@
 import { css } from 'styled-system/css';
 
-import { Logo } from '~/assets/logo';
+import { Logo } from '@/assets/logo';
 
-export default function Index() {
+export default function HomePage() {
   return (
     <div
       className={css({
