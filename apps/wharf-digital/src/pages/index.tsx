@@ -1,29 +1,26 @@
 import { css } from 'styled-system/css';
 
 import { Logo } from '@/assets/logo';
+import { Layout } from '@/components/Layout';
 
 export default function HomePage() {
   return (
-    <div
-      className={css({
-        background: 'black',
-        height: '100dvh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-      })}
-    >
-      <Logo />
-
-      <p
+    <Layout>
+      <div
         className={css({
-          color: 'white',
-          marginTop: 4,
+          py: 12,
         })}
       >
-        Crafted Digital Experiences
-      </p>
-    </div>
+        <Logo />
+
+        <p
+          className={css({
+            marginTop: 4,
+          })}
+        >
+          Crafted Digital Experiences
+        </p>
+      </div>
+    </Layout>
   );
 }
