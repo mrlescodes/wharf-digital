@@ -30,6 +30,12 @@ export default defineType({
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
     }),
+    defineField({
+      name: 'content',
+      title: 'Content',
+      type: 'array',
+      of: [{ type: 'block' }],
+    }),
   ],
   preview: {
     select: {

@@ -1,11 +1,11 @@
 import { defineField, defineType } from 'sanity';
-import { Settings } from 'lucide-react';
+import { SquareMenu } from 'lucide-react';
 
 export default defineType({
-  name: 'settings',
-  title: 'Settings',
+  name: 'navigation',
+  title: 'Navigation',
   type: 'document',
-  icon: Settings,
+  icon: SquareMenu,
   fields: [
     defineField({
       name: 'title',
@@ -14,10 +14,10 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'headerMenu',
-      title: 'Header Menu',
-      type: 'reference',
-      to: [{ type: 'navigation' }],
+      name: 'items',
+      title: 'Items',
+      type: 'array',
+      of: [{ type: 'link' }],
     }),
   ],
 });
