@@ -1,12 +1,14 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
+import { presentationTool } from 'sanity/presentation';
 import { visionTool } from '@sanity/vision';
 
 import { singletonSchemaTypes, schemaTypes } from './schemas';
 import {
-  sanityStudioTitle,
   sanityProjectId,
   sanityDataset,
+  sanityStudioTitle,
+  sanityStudioPreviewUrl,
   pageStructure,
   singletonPlugin,
 } from './utils';
@@ -14,9 +16,10 @@ import {
 export default defineConfig({
   name: 'default',
 
-  title: sanityStudioTitle,
   projectId: sanityProjectId,
   dataset: sanityDataset,
+
+  title: sanityStudioTitle,
 
   plugins: [
     // Customise the presentation of Singleton documents
@@ -25,6 +28,15 @@ export default defineConfig({
     }),
 
     visionTool(),
+
+    presentationTool({
+      previewUrl: {
+        origin: sanityStudioPreviewUrl,
+        draftMode: {
+          enable: '/api/draft',
+        },
+      },
+    }),
 
     // Configures the global "new document" button and document actions, to suit Singleton documents
     singletonPlugin(singletonSchemaTypes.map((d) => d.name)),

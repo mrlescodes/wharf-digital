@@ -13,7 +13,7 @@ import teamMember from './documents/team-member';
 
 // Modules
 import hero from './modules/hero';
-import postListing from './modules/post-listing.js';
+import postListing from './modules/post-listing';
 
 export const singletonSchemaTypes = [
   // Singletons
