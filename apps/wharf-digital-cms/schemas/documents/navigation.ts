@@ -14,10 +14,10 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'items',
-      title: 'Items',
+      name: 'links',
+      title: 'Links',
       type: 'array',
-      of: [{ type: 'link' }],
+      of: [{ type: 'linkInternal' }, { type: 'linkExternal' }],
     }),
   ],
 });

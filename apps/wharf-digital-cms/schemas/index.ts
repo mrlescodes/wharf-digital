@@ -2,7 +2,8 @@
 import settings from './singletons/settings';
 
 // Objects
-import link from './objects/link';
+import linkInternal from './objects/link-internal';
+import linkExternal from './objects/link-external';
 
 // Documents
 import navigation from './documents/navigation';
@@ -22,7 +23,8 @@ export const singletonSchemaTypes = [
 
 export const schemaTypes = [
   // Objects
-  link,
+  linkInternal,
+  linkExternal,
 
   // Documents
   navigation,
