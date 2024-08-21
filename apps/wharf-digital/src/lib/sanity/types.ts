@@ -234,17 +234,22 @@ export type Post = {
   }>;
 };
 
-export type Link = {
-  _type: 'link';
+export type LinkExternal = {
+  _type: 'linkExternal';
   label?: string;
-  type?: 'internal' | 'external';
-  internal?: {
+  url?: string;
+  newWindow?: boolean;
+};
+
+export type LinkInternal = {
+  _type: 'linkInternal';
+  label?: string;
+  reference?: {
     _ref: string;
     _type: 'reference';
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: 'page';
   };
-  external?: string;
 };
 
 export type Page = {
@@ -293,10 +298,13 @@ export type Navigation = {
   _updatedAt: string;
   _rev: string;
   title?: string;
-  items?: Array<
-    {
-      _key: string;
-    } & Link
+  links?: Array<
+    | ({
+        _key: string;
+      } & LinkInternal)
+    | ({
+        _key: string;
+      } & LinkExternal)
   >;
 };
 
@@ -316,13 +324,35 @@ export type AllSanitySchemaTypes =
   | SanityImageMetadata
   | Project
   | Post
-  | Link
+  | LinkExternal
+  | LinkInternal
   | Page
   | Slug
   | Settings
   | Navigation;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ../wharf-digital/src/lib/sanity/queries.ts
+// Source: ../wharf-digital/src/lib/sanity/queries/page.ts
+// Variable: pageQuery
+// Query: *[_type == "page" && slug.current == $slug][0]
+export type PageQueryResult = {
+  _id: string;
+  _type: 'page';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  modules?: Array<
+    | ({
+        _key: string;
+      } & Hero)
+    | ({
+        _key: string;
+      } & PostListing)
+  >;
+} | null;
+
+// Source: ../wharf-digital/src/lib/sanity/queries/post.ts
 // Variable: postsQuery
 // Query: *[_type == "post" && defined(slug)]
 export type PostsQueryResult = Array<{
@@ -387,12 +417,73 @@ export type PostQueryResult = {
   }>;
 } | null;
 
+// Source: ../wharf-digital/src/lib/sanity/queries/project.ts
+// Variable: projectsQuery
+// Query: *[_type == "project" && defined(slug)]
+export type ProjectsQueryResult = Array<{
+  _id: string;
+  _type: 'project';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+}>;
+// Variable: projectSlugsQuery
+// Query: *[_type == "project" && defined(slug.current)][].slug.current
+export type ProjectSlugsQueryResult = Array<string | null>;
+// Variable: projectQuery
+// Query: *[_type == "project" && slug.current == $slug][0]
+export type ProjectQueryResult = {
+  _id: string;
+  _type: 'project';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+} | null;
+
+// Source: ../wharf-digital/src/lib/sanity/queries/settings.ts
+// Variable: settingsQuery
+// Query: *[_type == "settings"][0]{        headerMenu->{                ...,    links[]{            _type == 'linkInternal' => {            _key,    _type,    label,    'slug':reference->slug.current,    },    _type == 'linkExternal' => {            _key,    _type,    label,    url,    newWindow    }	}        }    }
+export type SettingsQueryResult = {
+  headerMenu: {
+    _id: string;
+    _type: 'navigation';
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    links: Array<
+      | {
+          _key: string;
+          _type: 'linkExternal';
+          label: string | null;
+          url: string | null;
+          newWindow: boolean | null;
+        }
+      | {
+          _key: string;
+          _type: 'linkInternal';
+          label: string | null;
+          slug: string | null;
+        }
+    > | null;
+  } | null;
+} | null;
+
 // Query TypeMap
 import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_type == "post" && defined(slug)]': PostsQueryResult;
-    '*[_type == "post" && defined(slug.current)][].slug.current': PostSlugsQueryResult;
-    '*[_type == "post" && slug.current == $slug][0]': PostQueryResult;
+    '\n    *[_type == "page" && slug.current == $slug][0]\n': PageQueryResult;
+    '\n    *[_type == "post" && defined(slug)]\n': PostsQueryResult;
+    '\n    *[_type == "post" && defined(slug.current)][].slug.current\n': PostSlugsQueryResult;
+    '\n    *[_type == "post" && slug.current == $slug][0]\n': PostQueryResult;
+    '\n    *[_type == "project" && defined(slug)]\n': ProjectsQueryResult;
+    '\n    *[_type == "project" && defined(slug.current)][].slug.current\n': ProjectSlugsQueryResult;
+    '\n    *[_type == "project" && slug.current == $slug][0]\n': ProjectQueryResult;
+    "\n    *[_type == \"settings\"][0]{\n        headerMenu->{\n            \n    ...,\n    links[]{\n        \n    _type == 'linkInternal' => {\n        \n    _key,\n    _type,\n    label,\n    'slug':reference->slug.current,\n\n    },\n    _type == 'linkExternal' => {\n        \n    _key,\n    _type,\n    label,\n    url,\n    newWindow\n\n    }\n\n\t}\n\n        }\n    }\n": SettingsQueryResult;
   }
 }

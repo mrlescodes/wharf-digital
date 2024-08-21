@@ -1,4 +1,4 @@
-import { createClient, type SanityClient } from 'next-sanity';
+import { createClient } from 'next-sanity';
 
 import {
   sanityProjectId,
@@ -6,8 +6,6 @@ import {
   sanityApiVersion,
   sanityStudioUrl,
 } from '../env';
-
-import { postQuery, postSlugsQuery, postsQuery } from './queries';
 
 export function getClient(previewToken?: string) {
   return createClient({
@@ -22,18 +20,4 @@ export function getClient(previewToken?: string) {
     },
     token: previewToken,
   });
-}
-
-export async function getPosts(client: SanityClient) {
-  return await client.fetch(postsQuery);
-}
-
-export async function getAllPostsSlugs() {
-  const client = getClient();
-  const slugs = await client.fetch(postSlugsQuery);
-  return slugs.filter((value) => value != null);
-}
-
-export async function getPostBySlug(client: SanityClient, slug: string) {
-  return await client.fetch(postQuery, { slug });
 }

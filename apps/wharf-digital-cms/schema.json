@@ -1492,7 +1492,7 @@
     }
   },
   {
-    "name": "link",
+    "name": "linkExternal",
     "type": "type",
     "value": {
       "type": "object",
@@ -1501,7 +1501,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "string",
-            "value": "link"
+            "value": "linkExternal"
           }
         },
         "label": {
@@ -1511,24 +1511,44 @@
           },
           "optional": true
         },
-        "type": {
+        "url": {
           "type": "objectAttribute",
           "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "internal"
-              },
-              {
-                "type": "string",
-                "value": "external"
-              }
-            ]
+            "type": "string"
           },
           "optional": true
         },
-        "internal": {
+        "newWindow": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "linkInternal",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "linkInternal"
+          }
+        },
+        "label": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "reference": {
           "type": "objectAttribute",
           "value": {
             "type": "object",
@@ -1555,13 +1575,6 @@
               }
             },
             "dereferencesTo": "page"
-          },
-          "optional": true
-        },
-        "external": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
           },
           "optional": true
         }
@@ -1808,24 +1821,44 @@
         },
         "optional": true
       },
-      "items": {
+      "links": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
           "of": {
-            "type": "object",
-            "attributes": {
-              "_key": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
+            "type": "union",
+            "of": [
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "linkInternal"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "linkExternal"
                 }
               }
-            },
-            "rest": {
-              "type": "inline",
-              "name": "link"
-            }
+            ]
           }
         },
         "optional": true
