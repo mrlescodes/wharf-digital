@@ -33,8 +33,13 @@ export default defineType({
           ],
           preview: {
             select: {
-              title: 'label',
+              value: 'value',
+              label: 'label',
             },
+            prepare: ({ value, label }) => ({
+              title: value,
+              subtitle: label,
+            }),
           },
         }),
       ],

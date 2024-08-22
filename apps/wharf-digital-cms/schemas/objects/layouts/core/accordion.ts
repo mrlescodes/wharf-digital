@@ -16,7 +16,7 @@ export default defineType({
       name: 'intro',
       title: 'Intro',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [defineArrayMember({ type: 'block' })],
     }),
     defineField({
       name: 'items',
@@ -39,7 +39,7 @@ export default defineType({
               name: 'content',
               title: 'Content',
               type: 'array',
-              of: [{ type: 'block' }],
+              of: [defineArrayMember({ type: 'block' })],
               validation: (rule) => rule.required(),
             }),
           ],

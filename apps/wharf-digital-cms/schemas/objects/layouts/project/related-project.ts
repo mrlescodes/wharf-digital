@@ -13,8 +13,8 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'reference',
-      title: 'Reference',
+      name: 'project',
+      title: 'Project',
       type: 'reference',
       to: [{ type: 'project' }],
       validation: (rule) => rule.required(),

@@ -25,7 +25,7 @@ export default defineType({
     }),
     defineField({
       name: 'pageBuilder',
-      title: 'PageBuilder',
+      title: 'Page Builder',
       type: 'pageBuilder',
     }),
   ],
