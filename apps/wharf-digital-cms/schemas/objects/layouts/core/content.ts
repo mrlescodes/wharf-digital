@@ -18,11 +18,6 @@ export default defineType({
       type: 'array',
       of: [{ type: 'block' }],
     }),
-    defineField({
-      name: 'media',
-      title: 'Media',
-      type: 'image',
-    }),
   ],
   preview: {
     prepare() {

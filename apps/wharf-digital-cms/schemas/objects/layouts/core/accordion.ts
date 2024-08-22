@@ -8,6 +8,17 @@ export default defineType({
   icon: Rows4,
   fields: [
     defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'intro',
+      title: 'Intro',
+      type: 'array',
+      of: [{ type: 'block' }],
+    }),
+    defineField({
       name: 'items',
       title: 'Items',
       type: 'array',
