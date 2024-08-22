@@ -23,6 +23,11 @@ export default defineType({
       },
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: 'pageBuilder',
+      title: 'PageBuilder',
+      type: 'pageBuilder',
+    }),
   ],
   preview: {
     select: {

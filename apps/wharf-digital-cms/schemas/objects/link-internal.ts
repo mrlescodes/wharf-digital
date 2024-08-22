@@ -1,7 +1,7 @@
-import { defineField } from 'sanity';
+import { defineField, defineType } from 'sanity';
 import { Link } from 'lucide-react';
 
-export default defineField({
+export default defineType({
   name: 'linkInternal',
   title: 'Internal Link',
   type: 'object',

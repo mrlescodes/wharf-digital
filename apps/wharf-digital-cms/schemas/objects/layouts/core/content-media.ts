@@ -1,11 +1,11 @@
 import { defineField, defineType } from 'sanity';
-import { Wallpaper } from 'lucide-react';
+import { Captions } from 'lucide-react';
 
 export default defineType({
-  name: 'hero',
-  title: 'Hero',
+  name: 'layout.contentMedia',
+  title: 'Content / Media',
   type: 'object',
-  icon: Wallpaper,
+  icon: Captions,
   fields: [
     defineField({
       name: 'title',
@@ -18,5 +18,17 @@ export default defineType({
       type: 'array',
       of: [{ type: 'block' }],
     }),
+    defineField({
+      name: 'media',
+      title: 'Media',
+      type: 'image',
+    }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Content / Media',
+      };
+    },
+  },
 });
