@@ -68,34 +68,6 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type PostListing = {
-  _type: 'postListing';
-  title?: string;
-};
-
-export type Hero = {
-  _type: 'hero';
-  title?: string;
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: 'span';
-      _key: string;
-    }>;
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
-    listItem?: 'bullet' | 'number';
-    markDefs?: Array<{
-      href?: string;
-      _type: 'link';
-      _key: string;
-    }>;
-    level?: number;
-    _type: 'block';
-    _key: string;
-  }>;
-};
-
 export type TeamMember = {
   _id: string;
   _type: 'teamMember';
@@ -136,6 +108,352 @@ export type TeamMember = {
     _type: 'block';
     _key: string;
   }>;
+};
+
+export type Post = {
+  _id: string;
+  _type: 'post';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  publishDate?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+};
+
+export type LayoutRelatedProject = {
+  _type: 'layout.relatedProject';
+  title?: string;
+  reference?: {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'project';
+  };
+};
+
+export type Project = {
+  _id: string;
+  _type: 'project';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  pageBuilder?: Array<
+    | ({
+        _key: string;
+      } & LayoutAccordion)
+    | ({
+        _key: string;
+      } & LayoutContentMedia)
+    | ({
+        _key: string;
+      } & LayoutContent)
+    | ({
+        _key: string;
+      } & LayoutHero)
+    | ({
+        _key: string;
+      } & LayoutMediaGrid)
+    | ({
+        _key: string;
+      } & LayoutMedia)
+    | ({
+        _key: string;
+      } & LayoutMetrics)
+    | ({
+        _key: string;
+      } & LayoutPosts)
+    | ({
+        _key: string;
+      } & LayoutFeaturedProjects)
+    | ({
+        _key: string;
+      } & LayoutProjectIntro)
+    | ({
+        _key: string;
+      } & LayoutProjects)
+    | ({
+        _key: string;
+      } & LayoutRelatedProject)
+  >;
+};
+
+export type LayoutProjects = {
+  _type: 'layout.projects';
+  title?: string;
+};
+
+export type LayoutProjectIntro = {
+  _type: 'layout.projectIntro';
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+};
+
+export type LayoutFeaturedProjects = {
+  _type: 'layout.featuredProjects';
+  title?: string;
+};
+
+export type LayoutPosts = {
+  _type: 'layout.posts';
+  title?: string;
+};
+
+export type LayoutMetrics = {
+  _type: 'layout.metrics';
+  metrics?: Array<{
+    value?: string;
+    label?: string;
+    _type: 'metric';
+    _key: string;
+  }>;
+};
+
+export type LayoutMedia = {
+  _type: 'layout.media';
+  media?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+};
+
+export type LayoutMediaGrid = {
+  _type: 'layout.mediaGrid';
+  items?: Array<{
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'media';
+    _key: string;
+  }>;
+};
+
+export type LayoutHero = {
+  _type: 'layout.hero';
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+};
+
+export type LayoutContent = {
+  _type: 'layout.content';
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+  media?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+};
+
+export type LayoutContentMedia = {
+  _type: 'layout.contentMedia';
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+  media?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+};
+
+export type LayoutAccordion = {
+  _type: 'layout.accordion';
+  items?: Array<{
+    title?: string;
+    content?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: 'span';
+        _key: string;
+      }>;
+      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+      listItem?: 'bullet' | 'number';
+      markDefs?: Array<{
+        href?: string;
+        _type: 'link';
+        _key: string;
+      }>;
+      level?: number;
+      _type: 'block';
+      _key: string;
+    }>;
+    _type: 'item';
+    _key: string;
+  }>;
+};
+
+export type PageBuilder = Array<
+  | ({
+      _key: string;
+    } & LayoutAccordion)
+  | ({
+      _key: string;
+    } & LayoutContentMedia)
+  | ({
+      _key: string;
+    } & LayoutContent)
+  | ({
+      _key: string;
+    } & LayoutHero)
+  | ({
+      _key: string;
+    } & LayoutMediaGrid)
+  | ({
+      _key: string;
+    } & LayoutMedia)
+  | ({
+      _key: string;
+    } & LayoutMetrics)
+  | ({
+      _key: string;
+    } & LayoutPosts)
+  | ({
+      _key: string;
+    } & LayoutFeaturedProjects)
+  | ({
+      _key: string;
+    } & LayoutProjectIntro)
+  | ({
+      _key: string;
+    } & LayoutProjects)
+  | ({
+      _key: string;
+    } & LayoutRelatedProject)
+>;
+
+export type LinkInternal = {
+  _type: 'linkInternal';
+  label?: string;
+  reference?: {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'page';
+  };
+};
+
+export type Page = {
+  _id: string;
+  _type: 'page';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  pageBuilder?: PageBuilder;
 };
 
 export type SanityImageCrop = {
@@ -195,43 +513,10 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type Project = {
-  _id: string;
-  _type: 'project';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-};
-
-export type Post = {
-  _id: string;
-  _type: 'post';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  publishDate?: string;
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: 'span';
-      _key: string;
-    }>;
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
-    listItem?: 'bullet' | 'number';
-    markDefs?: Array<{
-      href?: string;
-      _type: 'link';
-      _key: string;
-    }>;
-    level?: number;
-    _type: 'block';
-    _key: string;
-  }>;
+export type Slug = {
+  _type: 'slug';
+  current?: string;
+  source?: string;
 };
 
 export type LinkExternal = {
@@ -239,41 +524,6 @@ export type LinkExternal = {
   label?: string;
   url?: string;
   newWindow?: boolean;
-};
-
-export type LinkInternal = {
-  _type: 'linkInternal';
-  label?: string;
-  reference?: {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: 'page';
-  };
-};
-
-export type Page = {
-  _id: string;
-  _type: 'page';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  modules?: Array<
-    | ({
-        _key: string;
-      } & Hero)
-    | ({
-        _key: string;
-      } & PostListing)
-  >;
-};
-
-export type Slug = {
-  _type: 'slug';
-  current?: string;
-  source?: string;
 };
 
 export type Settings = {
@@ -314,26 +564,40 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
-  | PostListing
-  | Hero
   | TeamMember
+  | Post
+  | LayoutRelatedProject
+  | Project
+  | LayoutProjects
+  | LayoutProjectIntro
+  | LayoutFeaturedProjects
+  | LayoutPosts
+  | LayoutMetrics
+  | LayoutMedia
+  | LayoutMediaGrid
+  | LayoutHero
+  | LayoutContent
+  | LayoutContentMedia
+  | LayoutAccordion
+  | PageBuilder
+  | LinkInternal
+  | Page
   | SanityImageCrop
   | SanityImageHotspot
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
-  | Project
-  | Post
-  | LinkExternal
-  | LinkInternal
-  | Page
   | Slug
+  | LinkExternal
   | Settings
   | Navigation;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../wharf-digital/src/lib/sanity/queries/page.ts
+// Variable: pageSlugsQuery
+// Query: *[_type == "page" && defined(slug.current)][].slug.current
+export type PageSlugsQueryResult = Array<string | null>;
 // Variable: pageQuery
-// Query: *[_type == "page" && slug.current == $slug][0]
+// Query: *[_type == "page" && slug.current == $slug][0]{      ...,      pageBuilder[] {            ...,    _type == 'projectListing' => {        "projects":  *[_type == 'project'],    },      }    }
 export type PageQueryResult = {
   _id: string;
   _type: 'page';
@@ -342,14 +606,256 @@ export type PageQueryResult = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  modules?: Array<
-    | ({
+  pageBuilder: Array<
+    | {
         _key: string;
-      } & Hero)
-    | ({
+        _type: 'layout.accordion';
+        items?: Array<{
+          title?: string;
+          content?: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: 'span';
+              _key: string;
+            }>;
+            style?:
+              | 'blockquote'
+              | 'h1'
+              | 'h2'
+              | 'h3'
+              | 'h4'
+              | 'h5'
+              | 'h6'
+              | 'normal';
+            listItem?: 'bullet' | 'number';
+            markDefs?: Array<{
+              href?: string;
+              _type: 'link';
+              _key: string;
+            }>;
+            level?: number;
+            _type: 'block';
+            _key: string;
+          }>;
+          _type: 'item';
+          _key: string;
+        }>;
+      }
+    | {
         _key: string;
-      } & PostListing)
-  >;
+        _type: 'layout.content';
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+        media?: {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: 'image';
+        };
+      }
+    | {
+        _key: string;
+        _type: 'layout.contentMedia';
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+        media?: {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: 'image';
+        };
+      }
+    | {
+        _key: string;
+        _type: 'layout.featuredProjects';
+        title?: string;
+      }
+    | {
+        _key: string;
+        _type: 'layout.hero';
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.media';
+        media?: {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: 'image';
+        };
+      }
+    | {
+        _key: string;
+        _type: 'layout.mediaGrid';
+        items?: Array<{
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: 'media';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.metrics';
+        metrics?: Array<{
+          value?: string;
+          label?: string;
+          _type: 'metric';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.posts';
+        title?: string;
+      }
+    | {
+        _key: string;
+        _type: 'layout.projectIntro';
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.projects';
+        title?: string;
+      }
+    | {
+        _key: string;
+        _type: 'layout.relatedProject';
+        title?: string;
+        reference?: {
+          _ref: string;
+          _type: 'reference';
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: 'project';
+        };
+      }
+  > | null;
 } | null;
 
 // Source: ../wharf-digital/src/lib/sanity/queries/post.ts
@@ -428,6 +934,44 @@ export type ProjectsQueryResult = Array<{
   _rev: string;
   title?: string;
   slug?: Slug;
+  pageBuilder?: Array<
+    | ({
+        _key: string;
+      } & LayoutAccordion)
+    | ({
+        _key: string;
+      } & LayoutContent)
+    | ({
+        _key: string;
+      } & LayoutContentMedia)
+    | ({
+        _key: string;
+      } & LayoutFeaturedProjects)
+    | ({
+        _key: string;
+      } & LayoutHero)
+    | ({
+        _key: string;
+      } & LayoutMedia)
+    | ({
+        _key: string;
+      } & LayoutMediaGrid)
+    | ({
+        _key: string;
+      } & LayoutMetrics)
+    | ({
+        _key: string;
+      } & LayoutPosts)
+    | ({
+        _key: string;
+      } & LayoutProjectIntro)
+    | ({
+        _key: string;
+      } & LayoutProjects)
+    | ({
+        _key: string;
+      } & LayoutRelatedProject)
+  >;
 }>;
 // Variable: projectSlugsQuery
 // Query: *[_type == "project" && defined(slug.current)][].slug.current
@@ -442,6 +986,44 @@ export type ProjectQueryResult = {
   _rev: string;
   title?: string;
   slug?: Slug;
+  pageBuilder?: Array<
+    | ({
+        _key: string;
+      } & LayoutAccordion)
+    | ({
+        _key: string;
+      } & LayoutContent)
+    | ({
+        _key: string;
+      } & LayoutContentMedia)
+    | ({
+        _key: string;
+      } & LayoutFeaturedProjects)
+    | ({
+        _key: string;
+      } & LayoutHero)
+    | ({
+        _key: string;
+      } & LayoutMedia)
+    | ({
+        _key: string;
+      } & LayoutMediaGrid)
+    | ({
+        _key: string;
+      } & LayoutMetrics)
+    | ({
+        _key: string;
+      } & LayoutPosts)
+    | ({
+        _key: string;
+      } & LayoutProjectIntro)
+    | ({
+        _key: string;
+      } & LayoutProjects)
+    | ({
+        _key: string;
+      } & LayoutRelatedProject)
+  >;
 } | null;
 
 // Source: ../wharf-digital/src/lib/sanity/queries/settings.ts
@@ -477,7 +1059,8 @@ export type SettingsQueryResult = {
 import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
-    '\n    *[_type == "page" && slug.current == $slug][0]\n': PageQueryResult;
+    '\n  *[_type == "page" && defined(slug.current)][].slug.current\n': PageSlugsQueryResult;
+    '\n    *[_type == "page" && slug.current == $slug][0]{\n      ...,\n      pageBuilder[] {\n        \n    ...,\n    _type == \'projectListing\' => {\n        "projects":  *[_type == \'project\'],\n    },\n\n      }\n    }\n': PageQueryResult;
     '\n    *[_type == "post" && defined(slug)]\n': PostsQueryResult;
     '\n    *[_type == "post" && defined(slug.current)][].slug.current\n': PostSlugsQueryResult;
     '\n    *[_type == "post" && slug.current == $slug][0]\n': PostQueryResult;

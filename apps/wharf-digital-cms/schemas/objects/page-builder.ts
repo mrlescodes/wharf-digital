@@ -3,7 +3,7 @@ import { Blocks } from 'lucide-react';
 
 export default defineType({
   name: 'pageBuilder',
-  title: 'PageBuilder',
+  title: 'Page Builder',
   type: 'array',
   icon: Blocks,
   of: [
