@@ -1,7 +1,6 @@
 import { useLiveQuery } from 'next-sanity/preview';
 
 import { postQuery } from '@/lib/sanity/queries';
-
 import { ProjectLayout, ProjectLayoutProps } from './ProjectLayout';
 
 export default function ProjectLayoutPreview(props: ProjectLayoutProps) {

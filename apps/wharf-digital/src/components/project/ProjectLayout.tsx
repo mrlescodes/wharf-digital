@@ -1,11 +1,18 @@
-import { Project } from '@/lib/sanity/types';
+import { ExpandedProject } from '@/lib/sanity/expanded-types';
+import { PageBuilder } from '../page-builder/PageBuilder';
 
 export type ProjectLayoutProps = {
-  project: Project;
+  project: ExpandedProject;
 };
 
 export const ProjectLayout = (props: ProjectLayoutProps) => {
   const { project } = props;
 
-  return <h1>{project.title}</h1>;
+  return (
+    <>
+      <h1>{project.title}</h1>
+
+      {project.pageBuilder && <PageBuilder layouts={project.pageBuilder} />}
+    </>
+  );
 };

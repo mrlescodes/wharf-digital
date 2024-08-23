@@ -5,12 +5,11 @@ import { getAllPostSlugs, getPostBySlug } from '@/lib/sanity/queries';
 import { getClient } from '@/lib/sanity/client';
 import { sanityReadToken } from '@/lib/sanity/token';
 import type { Post } from '@/lib/sanity/types';
-
 import type { SharedPageProps } from '@/pages/_app';
 import { PostLayout } from '@/components/post/PostLayout';
 
 const PostLayoutPreview = dynamic(
-  () => import('@/components/post/PostLayoutPreview')
+  () => import('@/components/post/PostLayoutPreview'),
 );
 
 interface PostProps extends SharedPageProps {
@@ -18,7 +17,7 @@ interface PostProps extends SharedPageProps {
 }
 
 export default function Post(
-  props: InferGetStaticPropsType<typeof getStaticProps>
+  props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
   const { post, draftMode } = props;
 

@@ -5,20 +5,20 @@ import { getAllProjectSlugs, getProjectBySlug } from '@/lib/sanity/queries';
 import { getClient } from '@/lib/sanity/client';
 import { sanityReadToken } from '@/lib/sanity/token';
 import type { Project } from '@/lib/sanity/types';
-
+import { ExpandedProject } from '@/lib/sanity/expanded-types';
 import type { SharedPageProps } from '@/pages/_app';
 import { ProjectLayout } from '@/components/project/ProjectLayout';
 
 const ProjectLayoutPreview = dynamic(
-  () => import('@/components/project/ProjectLayoutPreview')
+  () => import('@/components/project/ProjectLayoutPreview'),
 );
 
 interface ProjectProps extends SharedPageProps {
-  project: Project;
+  project: ExpandedProject;
 }
 
 export default function Project(
-  props: InferGetStaticPropsType<typeof getStaticProps>
+  props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
   const { project, draftMode } = props;
 

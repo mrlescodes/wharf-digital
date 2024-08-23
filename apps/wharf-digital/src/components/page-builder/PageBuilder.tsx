@@ -1,7 +1,4 @@
-import { ComponentType } from 'react';
-
-import type { PageBuilder as PageBuilderLayouts } from '@/lib/sanity/types';
-
+import { ExpandedPageBuilder } from '@/lib/sanity/expanded-types';
 import { AccordionLayout } from './AccordionLayout';
 import { ContentMediaLayout } from './ContentMediaLayout';
 import { ContentLayout } from './ContentLayout';
@@ -15,25 +12,8 @@ import { ProjectIntroLayout } from './ProjectIntroLayout';
 import { ProjectsLayout } from './ProjectsLayout';
 import { RelatedProjectLayout } from './RelatedProjectLayout';
 
-type LayoutType = PageBuilderLayouts[number]['_type'];
-
-const layoutMap: Record<LayoutType, ComponentType<any>> = {
-  'layout.accordion': AccordionLayout,
-  'layout.contentMedia': ContentMediaLayout,
-  'layout.content': ContentLayout,
-  'layout.hero': HeroLayout,
-  'layout.mediaGrid': MediaGridLayout,
-  'layout.media': MediaLayout,
-  'layout.metrics': MetricsLayout,
-  'layout.posts': PostsLayout,
-  'layout.featuredProjects': FeaturedProjectsLayout,
-  'layout.projectIntro': ProjectIntroLayout,
-  'layout.projects': ProjectsLayout,
-  'layout.relatedProject': RelatedProjectLayout,
-};
-
 export type PageBuilderProps = {
-  layouts: PageBuilderLayouts;
+  layouts: ExpandedPageBuilder;
 };
 
 export const PageBuilder = (props: PageBuilderProps) => {
@@ -46,9 +26,43 @@ export const PageBuilder = (props: PageBuilderProps) => {
   return (
     <div>
       {layouts.map((layout) => {
-        const PageBuilderLayout = layoutMap[layout._type];
+        switch (layout._type) {
+          case 'layout.accordion':
+            return <AccordionLayout key={layout._key} {...layout} />;
 
-        return <PageBuilderLayout key={layout._key} {...layout} />;
+          case 'layout.contentMedia':
+            return <ContentMediaLayout key={layout._key} {...layout} />;
+
+          case 'layout.content':
+            return <ContentLayout key={layout._key} {...layout} />;
+
+          case 'layout.hero':
+            return <HeroLayout key={layout._key} {...layout} />;
+
+          case 'layout.mediaGrid':
+            return <MediaGridLayout key={layout._key} {...layout} />;
+
+          case 'layout.media':
+            return <MediaLayout key={layout._key} {...layout} />;
+
+          case 'layout.metrics':
+            return <MetricsLayout key={layout._key} {...layout} />;
+
+          case 'layout.posts':
+            return <PostsLayout key={layout._key} {...layout} />;
+
+          case 'layout.featuredProjects':
+            return <FeaturedProjectsLayout key={layout._key} {...layout} />;
+
+          case 'layout.projectIntro':
+            return <ProjectIntroLayout key={layout._key} {...layout} />;
+
+          case 'layout.projects':
+            return <ProjectsLayout key={layout._key} {...layout} />;
+
+          case 'layout.relatedProject':
+            return <RelatedProjectLayout key={layout._key} {...layout} />;
+        }
       })}
     </div>
   );

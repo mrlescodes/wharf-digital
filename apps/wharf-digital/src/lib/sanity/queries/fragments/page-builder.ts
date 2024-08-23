@@ -7,12 +7,27 @@ export const pageBuilderQuery = defineQuery(`
         "posts": *[_type == "post" && defined(slug)],
     },
     _type == 'layout.featuredProjects' => {
-        projects[]->
+        projects[]->{
+            _id,
+            _type,
+            title,
+            slug,
+        }
     },
     _type == 'layout.projects' => {
-        "projects": *[_type == "project" && defined(slug)],
+        "projects": *[_type == "project" && defined(slug)]{
+            _id,
+            _type,
+            title,
+            slug,
+        },
     },
     _type == 'layout.relatedProject' => {
-        project->
+        project->{
+            _id,
+            _type,
+            title,
+            slug,
+        }
     },
 `);

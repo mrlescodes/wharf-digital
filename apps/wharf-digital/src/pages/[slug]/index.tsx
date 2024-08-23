@@ -4,21 +4,20 @@ import dynamic from 'next/dynamic';
 import { getAllPageSlugs, getPageBySlug } from '@/lib/sanity/queries';
 import { getClient } from '@/lib/sanity/client';
 import { sanityReadToken } from '@/lib/sanity/token';
-import type { Page } from '@/lib/sanity/types';
-
+import { ExpandedPage } from '@/lib/sanity/expanded-types';
 import type { SharedPageProps } from '@/pages/_app';
 import { PageLayout } from '@/components/page/PageLayout';
 
 const PageLayoutPreview = dynamic(
-  () => import('@/components/page/PageLayoutPreview')
+  () => import('@/components/page/PageLayoutPreview'),
 );
 
 interface PageProps extends SharedPageProps {
-  page: Page;
+  page: ExpandedPage;
 }
 
 export default function Page(
-  props: InferGetStaticPropsType<typeof getStaticProps>
+  props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
   const { page, draftMode } = props;
 

@@ -1,11 +1,9 @@
 import Link from 'next/link';
 import { css } from 'styled-system/css';
 
-import type { LayoutPosts, Post } from '@/lib/sanity/types';
+import type { ExpandedLayoutPosts } from '@/lib/sanity/expanded-types';
 
-type PostsLayoutProps = LayoutPosts & {
-  posts?: Post[];
-};
+type PostsLayoutProps = ExpandedLayoutPosts;
 
 export const PostsLayout = (props: PostsLayoutProps) => {
   const { title, posts } = props;

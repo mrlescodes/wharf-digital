@@ -1,8 +1,8 @@
-import { Page } from '@/lib/sanity/types';
+import { ExpandedPage } from '@/lib/sanity/expanded-types';
 import { PageBuilder } from '../page-builder/PageBuilder';
 
 export type PageLayoutProps = {
-  page: Page;
+  page: ExpandedPage;
 };
 
 export const PageLayout = (props: PageLayoutProps) => {

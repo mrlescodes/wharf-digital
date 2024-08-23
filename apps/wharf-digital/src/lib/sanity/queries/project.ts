@@ -2,6 +2,7 @@ import { type SanityClient } from 'next-sanity';
 import { defineQuery } from 'groq';
 
 import { getClient } from '../client';
+import { pageBuilderQuery } from './fragments/page-builder';
 
 export const projectsQuery = defineQuery(`
     *[_type == "project" && defined(slug)]
@@ -22,7 +23,12 @@ export async function getAllProjectSlugs() {
 }
 
 export const projectQuery = defineQuery(`
-    *[_type == "project" && slug.current == $slug][0]
+    *[_type == "project" && slug.current == $slug][0]{
+      ...,
+      pageBuilder[] {
+        ${pageBuilderQuery}
+      }
+    }
 `);
 
 export async function getProjectBySlug(client: SanityClient, slug: string) {

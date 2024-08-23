@@ -1,12 +1,9 @@
 import Link from 'next/link';
 import { css } from 'styled-system/css';
 
-import type { LayoutFeaturedProjects, Project } from '@/lib/sanity/types';
+import type { ExpandedLayoutFeaturedProjects } from '@/lib/sanity/expanded-types';
 
-// Replace project references with expanded document
-type FeaturedProjectsLayoutProps = Omit<LayoutFeaturedProjects, 'projects'> & {
-  projects?: Project[];
-};
+type FeaturedProjectsLayoutProps = ExpandedLayoutFeaturedProjects;
 
 export const FeaturedProjectsLayout = (props: FeaturedProjectsLayoutProps) => {
   const { title, projects } = props;
