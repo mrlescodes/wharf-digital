@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 import { UsersRound } from 'lucide-react';
 
 export default defineType({
@@ -48,7 +48,7 @@ export default defineType({
       name: 'bio',
       title: 'Bio',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [defineArrayMember({ type: 'block' })],
     }),
   ],
   preview: {

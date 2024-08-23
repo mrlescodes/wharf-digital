@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 import { SquareMenu } from 'lucide-react';
 
 export default defineType({
@@ -14,10 +14,13 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'items',
-      title: 'Items',
+      name: 'links',
+      title: 'Links',
       type: 'array',
-      of: [{ type: 'link' }],
+      of: [
+        defineArrayMember({ type: 'linkInternal' }),
+        defineArrayMember({ type: 'linkExternal' }),
+      ],
     }),
   ],
 });

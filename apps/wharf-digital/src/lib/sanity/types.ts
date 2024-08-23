@@ -68,34 +68,6 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type PostListing = {
-  _type: 'postListing';
-  title?: string;
-};
-
-export type Hero = {
-  _type: 'hero';
-  title?: string;
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: 'span';
-      _key: string;
-    }>;
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
-    listItem?: 'bullet' | 'number';
-    markDefs?: Array<{
-      href?: string;
-      _type: 'link';
-      _key: string;
-    }>;
-    level?: number;
-    _type: 'block';
-    _key: string;
-  }>;
-};
-
 export type TeamMember = {
   _id: string;
   _type: 'teamMember';
@@ -136,6 +108,367 @@ export type TeamMember = {
     _type: 'block';
     _key: string;
   }>;
+};
+
+export type Post = {
+  _id: string;
+  _type: 'post';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  publishDate?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+};
+
+export type LayoutRelatedProject = {
+  _type: 'layout.relatedProject';
+  title?: string;
+  project?: {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'project';
+  };
+};
+
+export type Project = {
+  _id: string;
+  _type: 'project';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  pageBuilder?: Array<
+    | ({
+        _key: string;
+      } & LayoutAccordion)
+    | ({
+        _key: string;
+      } & LayoutContentMedia)
+    | ({
+        _key: string;
+      } & LayoutContent)
+    | ({
+        _key: string;
+      } & LayoutHero)
+    | ({
+        _key: string;
+      } & LayoutMediaGrid)
+    | ({
+        _key: string;
+      } & LayoutMedia)
+    | ({
+        _key: string;
+      } & LayoutMetrics)
+    | ({
+        _key: string;
+      } & LayoutPosts)
+    | ({
+        _key: string;
+      } & LayoutFeaturedProjects)
+    | ({
+        _key: string;
+      } & LayoutProjectIntro)
+    | ({
+        _key: string;
+      } & LayoutProjects)
+    | ({
+        _key: string;
+      } & LayoutRelatedProject)
+  >;
+};
+
+export type LayoutProjects = {
+  _type: 'layout.projects';
+  title?: string;
+};
+
+export type LayoutProjectIntro = {
+  _type: 'layout.projectIntro';
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+};
+
+export type LayoutFeaturedProjects = {
+  _type: 'layout.featuredProjects';
+  title?: string;
+  projects?: Array<{
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: 'project';
+  }>;
+};
+
+export type LayoutPosts = {
+  _type: 'layout.posts';
+  title?: string;
+};
+
+export type LayoutMetrics = {
+  _type: 'layout.metrics';
+  metrics?: Array<{
+    value?: string;
+    label?: string;
+    _type: 'metric';
+    _key: string;
+  }>;
+};
+
+export type LayoutMedia = {
+  _type: 'layout.media';
+  media?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+};
+
+export type LayoutMediaGrid = {
+  _type: 'layout.mediaGrid';
+  items?: Array<{
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'media';
+    _key: string;
+  }>;
+};
+
+export type LayoutHero = {
+  _type: 'layout.hero';
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+};
+
+export type LayoutContent = {
+  _type: 'layout.content';
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+};
+
+export type LayoutContentMedia = {
+  _type: 'layout.contentMedia';
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+  media?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+};
+
+export type LayoutAccordion = {
+  _type: 'layout.accordion';
+  title?: string;
+  intro?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }>;
+  items?: Array<{
+    title?: string;
+    content?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: 'span';
+        _key: string;
+      }>;
+      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+      listItem?: 'bullet' | 'number';
+      markDefs?: Array<{
+        href?: string;
+        _type: 'link';
+        _key: string;
+      }>;
+      level?: number;
+      _type: 'block';
+      _key: string;
+    }>;
+    _type: 'item';
+    _key: string;
+  }>;
+};
+
+export type PageBuilder = Array<
+  | ({
+      _key: string;
+    } & LayoutAccordion)
+  | ({
+      _key: string;
+    } & LayoutContentMedia)
+  | ({
+      _key: string;
+    } & LayoutContent)
+  | ({
+      _key: string;
+    } & LayoutHero)
+  | ({
+      _key: string;
+    } & LayoutMediaGrid)
+  | ({
+      _key: string;
+    } & LayoutMedia)
+  | ({
+      _key: string;
+    } & LayoutMetrics)
+  | ({
+      _key: string;
+    } & LayoutPosts)
+  | ({
+      _key: string;
+    } & LayoutFeaturedProjects)
+  | ({
+      _key: string;
+    } & LayoutProjectIntro)
+  | ({
+      _key: string;
+    } & LayoutProjects)
+  | ({
+      _key: string;
+    } & LayoutRelatedProject)
+>;
+
+export type LinkInternal = {
+  _type: 'linkInternal';
+  label?: string;
+  reference?: {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'page';
+  };
+};
+
+export type Page = {
+  _id: string;
+  _type: 'page';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  pageBuilder?: PageBuilder;
 };
 
 export type SanityImageCrop = {
@@ -195,80 +528,17 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type Project = {
-  _id: string;
-  _type: 'project';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-};
-
-export type Post = {
-  _id: string;
-  _type: 'post';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  publishDate?: string;
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: 'span';
-      _key: string;
-    }>;
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
-    listItem?: 'bullet' | 'number';
-    markDefs?: Array<{
-      href?: string;
-      _type: 'link';
-      _key: string;
-    }>;
-    level?: number;
-    _type: 'block';
-    _key: string;
-  }>;
-};
-
-export type Link = {
-  _type: 'link';
-  label?: string;
-  type?: 'internal' | 'external';
-  internal?: {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: 'page';
-  };
-  external?: string;
-};
-
-export type Page = {
-  _id: string;
-  _type: 'page';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  modules?: Array<
-    | ({
-        _key: string;
-      } & Hero)
-    | ({
-        _key: string;
-      } & PostListing)
-  >;
-};
-
 export type Slug = {
   _type: 'slug';
   current?: string;
   source?: string;
+};
+
+export type LinkExternal = {
+  _type: 'linkExternal';
+  label?: string;
+  url?: string;
+  newWindow?: boolean;
 };
 
 export type Settings = {
@@ -293,10 +563,13 @@ export type Navigation = {
   _updatedAt: string;
   _rev: string;
   title?: string;
-  items?: Array<
-    {
-      _key: string;
-    } & Link
+  links?: Array<
+    | ({
+        _key: string;
+      } & LinkInternal)
+    | ({
+        _key: string;
+      } & LinkExternal)
   >;
 };
 
@@ -306,23 +579,365 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
-  | PostListing
-  | Hero
   | TeamMember
+  | Post
+  | LayoutRelatedProject
+  | Project
+  | LayoutProjects
+  | LayoutProjectIntro
+  | LayoutFeaturedProjects
+  | LayoutPosts
+  | LayoutMetrics
+  | LayoutMedia
+  | LayoutMediaGrid
+  | LayoutHero
+  | LayoutContent
+  | LayoutContentMedia
+  | LayoutAccordion
+  | PageBuilder
+  | LinkInternal
+  | Page
   | SanityImageCrop
   | SanityImageHotspot
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
-  | Project
-  | Post
-  | Link
-  | Page
   | Slug
+  | LinkExternal
   | Settings
   | Navigation;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ../wharf-digital/src/lib/sanity/queries.ts
+// Source: ../wharf-digital/src/lib/sanity/queries/page.ts
+// Variable: pageSlugsQuery
+// Query: *[_type == "page" && defined(slug.current)][].slug.current
+export type PageSlugsQueryResult = Array<string | null>;
+// Variable: pageQuery
+// Query: *[_type == "page" && slug.current == $slug][0]{      ...,      pageBuilder[] {            ...,    _type == 'layout.posts' => {        "posts": *[_type == "post" && defined(slug)],    },    _type == 'layout.featuredProjects' => {        projects[]->{            _id,            _type,            title,            slug,        }    },    _type == 'layout.projects' => {        "projects": *[_type == "project" && defined(slug)]{            _id,            _type,            title,            slug,        },    },    _type == 'layout.relatedProject' => {        project->{            _id,            _type,            title,            slug,        }    },      }    }
+export type PageQueryResult = {
+  _id: string;
+  _type: 'page';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  pageBuilder: Array<
+    | {
+        _key: string;
+        _type: 'layout.accordion';
+        title?: string;
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+        items?: Array<{
+          title?: string;
+          content?: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: 'span';
+              _key: string;
+            }>;
+            style?:
+              | 'blockquote'
+              | 'h1'
+              | 'h2'
+              | 'h3'
+              | 'h4'
+              | 'h5'
+              | 'h6'
+              | 'normal';
+            listItem?: 'bullet' | 'number';
+            markDefs?: Array<{
+              href?: string;
+              _type: 'link';
+              _key: string;
+            }>;
+            level?: number;
+            _type: 'block';
+            _key: string;
+          }>;
+          _type: 'item';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.content';
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.contentMedia';
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+        media?: {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: 'image';
+        };
+      }
+    | {
+        _key: string;
+        _type: 'layout.featuredProjects';
+        title?: string;
+        projects: Array<{
+          _id: string;
+          _type: 'project';
+          title: string | null;
+          slug: Slug | null;
+        }> | null;
+      }
+    | {
+        _key: string;
+        _type: 'layout.hero';
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.media';
+        media?: {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: 'image';
+        };
+      }
+    | {
+        _key: string;
+        _type: 'layout.mediaGrid';
+        items?: Array<{
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: 'media';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.metrics';
+        metrics?: Array<{
+          value?: string;
+          label?: string;
+          _type: 'metric';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.posts';
+        title?: string;
+        posts: Array<{
+          _id: string;
+          _type: 'post';
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          slug?: Slug;
+          publishDate?: string;
+          content?: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: 'span';
+              _key: string;
+            }>;
+            style?:
+              | 'blockquote'
+              | 'h1'
+              | 'h2'
+              | 'h3'
+              | 'h4'
+              | 'h5'
+              | 'h6'
+              | 'normal';
+            listItem?: 'bullet' | 'number';
+            markDefs?: Array<{
+              href?: string;
+              _type: 'link';
+              _key: string;
+            }>;
+            level?: number;
+            _type: 'block';
+            _key: string;
+          }>;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.projectIntro';
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.projects';
+        title?: string;
+        projects: Array<{
+          _id: string;
+          _type: 'project';
+          title: string | null;
+          slug: Slug | null;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.relatedProject';
+        title?: string;
+        project: {
+          _id: string;
+          _type: 'project';
+          title: string | null;
+          slug: Slug | null;
+        } | null;
+      }
+  > | null;
+} | null;
+
+// Source: ../wharf-digital/src/lib/sanity/queries/post.ts
 // Variable: postsQuery
 // Query: *[_type == "post" && defined(slug)]
 export type PostsQueryResult = Array<{
@@ -387,12 +1002,426 @@ export type PostQueryResult = {
   }>;
 } | null;
 
+// Source: ../wharf-digital/src/lib/sanity/queries/project.ts
+// Variable: projectsQuery
+// Query: *[_type == "project" && defined(slug)]
+export type ProjectsQueryResult = Array<{
+  _id: string;
+  _type: 'project';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  pageBuilder?: Array<
+    | ({
+        _key: string;
+      } & LayoutAccordion)
+    | ({
+        _key: string;
+      } & LayoutContent)
+    | ({
+        _key: string;
+      } & LayoutContentMedia)
+    | ({
+        _key: string;
+      } & LayoutFeaturedProjects)
+    | ({
+        _key: string;
+      } & LayoutHero)
+    | ({
+        _key: string;
+      } & LayoutMedia)
+    | ({
+        _key: string;
+      } & LayoutMediaGrid)
+    | ({
+        _key: string;
+      } & LayoutMetrics)
+    | ({
+        _key: string;
+      } & LayoutPosts)
+    | ({
+        _key: string;
+      } & LayoutProjectIntro)
+    | ({
+        _key: string;
+      } & LayoutProjects)
+    | ({
+        _key: string;
+      } & LayoutRelatedProject)
+  >;
+}>;
+// Variable: projectSlugsQuery
+// Query: *[_type == "project" && defined(slug.current)][].slug.current
+export type ProjectSlugsQueryResult = Array<string | null>;
+// Variable: projectQuery
+// Query: *[_type == "project" && slug.current == $slug][0]{      ...,      pageBuilder[] {            ...,    _type == 'layout.posts' => {        "posts": *[_type == "post" && defined(slug)],    },    _type == 'layout.featuredProjects' => {        projects[]->{            _id,            _type,            title,            slug,        }    },    _type == 'layout.projects' => {        "projects": *[_type == "project" && defined(slug)]{            _id,            _type,            title,            slug,        },    },    _type == 'layout.relatedProject' => {        project->{            _id,            _type,            title,            slug,        }    },      }    }
+export type ProjectQueryResult = {
+  _id: string;
+  _type: 'project';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  pageBuilder: Array<
+    | {
+        _key: string;
+        _type: 'layout.accordion';
+        title?: string;
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+        items?: Array<{
+          title?: string;
+          content?: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: 'span';
+              _key: string;
+            }>;
+            style?:
+              | 'blockquote'
+              | 'h1'
+              | 'h2'
+              | 'h3'
+              | 'h4'
+              | 'h5'
+              | 'h6'
+              | 'normal';
+            listItem?: 'bullet' | 'number';
+            markDefs?: Array<{
+              href?: string;
+              _type: 'link';
+              _key: string;
+            }>;
+            level?: number;
+            _type: 'block';
+            _key: string;
+          }>;
+          _type: 'item';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.content';
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.contentMedia';
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+        media?: {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: 'image';
+        };
+      }
+    | {
+        _key: string;
+        _type: 'layout.featuredProjects';
+        title?: string;
+        projects: Array<{
+          _id: string;
+          _type: 'project';
+          title: string | null;
+          slug: Slug | null;
+        }> | null;
+      }
+    | {
+        _key: string;
+        _type: 'layout.hero';
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.media';
+        media?: {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: 'image';
+        };
+      }
+    | {
+        _key: string;
+        _type: 'layout.mediaGrid';
+        items?: Array<{
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: 'media';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.metrics';
+        metrics?: Array<{
+          value?: string;
+          label?: string;
+          _type: 'metric';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.posts';
+        title?: string;
+        posts: Array<{
+          _id: string;
+          _type: 'post';
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          slug?: Slug;
+          publishDate?: string;
+          content?: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: 'span';
+              _key: string;
+            }>;
+            style?:
+              | 'blockquote'
+              | 'h1'
+              | 'h2'
+              | 'h3'
+              | 'h4'
+              | 'h5'
+              | 'h6'
+              | 'normal';
+            listItem?: 'bullet' | 'number';
+            markDefs?: Array<{
+              href?: string;
+              _type: 'link';
+              _key: string;
+            }>;
+            level?: number;
+            _type: 'block';
+            _key: string;
+          }>;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.projectIntro';
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            | 'blockquote'
+            | 'h1'
+            | 'h2'
+            | 'h3'
+            | 'h4'
+            | 'h5'
+            | 'h6'
+            | 'normal';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.projects';
+        title?: string;
+        projects: Array<{
+          _id: string;
+          _type: 'project';
+          title: string | null;
+          slug: Slug | null;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'layout.relatedProject';
+        title?: string;
+        project: {
+          _id: string;
+          _type: 'project';
+          title: string | null;
+          slug: Slug | null;
+        } | null;
+      }
+  > | null;
+} | null;
+
+// Source: ../wharf-digital/src/lib/sanity/queries/settings.ts
+// Variable: settingsQuery
+// Query: *[_type == "settings"][0]{        headerMenu->{                ...,    links[]{            _type == 'linkInternal' => {            _key,    _type,    label,    'slug':reference->slug.current,    },    _type == 'linkExternal' => {            _key,    _type,    label,    url,    newWindow    }	}        }    }
+export type SettingsQueryResult = {
+  headerMenu: {
+    _id: string;
+    _type: 'navigation';
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    links: Array<
+      | {
+          _key: string;
+          _type: 'linkExternal';
+          label: string | null;
+          url: string | null;
+          newWindow: boolean | null;
+        }
+      | {
+          _key: string;
+          _type: 'linkInternal';
+          label: string | null;
+          slug: string | null;
+        }
+    > | null;
+  } | null;
+} | null;
+
 // Query TypeMap
 import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_type == "post" && defined(slug)]': PostsQueryResult;
-    '*[_type == "post" && defined(slug.current)][].slug.current': PostSlugsQueryResult;
-    '*[_type == "post" && slug.current == $slug][0]': PostQueryResult;
+    '\n  *[_type == "page" && defined(slug.current)][].slug.current\n': PageSlugsQueryResult;
+    '\n    *[_type == "page" && slug.current == $slug][0]{\n      ...,\n      pageBuilder[] {\n        \n    ...,\n    _type == \'layout.posts\' => {\n        "posts": *[_type == "post" && defined(slug)],\n    },\n    _type == \'layout.featuredProjects\' => {\n        projects[]->{\n            _id,\n            _type,\n            title,\n            slug,\n        }\n    },\n    _type == \'layout.projects\' => {\n        "projects": *[_type == "project" && defined(slug)]{\n            _id,\n            _type,\n            title,\n            slug,\n        },\n    },\n    _type == \'layout.relatedProject\' => {\n        project->{\n            _id,\n            _type,\n            title,\n            slug,\n        }\n    },\n\n      }\n    }\n': PageQueryResult;
+    '\n    *[_type == "post" && defined(slug)]\n': PostsQueryResult;
+    '\n    *[_type == "post" && defined(slug.current)][].slug.current\n': PostSlugsQueryResult;
+    '\n    *[_type == "post" && slug.current == $slug][0]\n': PostQueryResult;
+    '\n    *[_type == "project" && defined(slug)]\n': ProjectsQueryResult;
+    '\n    *[_type == "project" && defined(slug.current)][].slug.current\n': ProjectSlugsQueryResult;
+    '\n    *[_type == "project" && slug.current == $slug][0]{\n      ...,\n      pageBuilder[] {\n        \n    ...,\n    _type == \'layout.posts\' => {\n        "posts": *[_type == "post" && defined(slug)],\n    },\n    _type == \'layout.featuredProjects\' => {\n        projects[]->{\n            _id,\n            _type,\n            title,\n            slug,\n        }\n    },\n    _type == \'layout.projects\' => {\n        "projects": *[_type == "project" && defined(slug)]{\n            _id,\n            _type,\n            title,\n            slug,\n        },\n    },\n    _type == \'layout.relatedProject\' => {\n        project->{\n            _id,\n            _type,\n            title,\n            slug,\n        }\n    },\n\n      }\n    }\n': ProjectQueryResult;
+    "\n    *[_type == \"settings\"][0]{\n        headerMenu->{\n            \n    ...,\n    links[]{\n        \n    _type == 'linkInternal' => {\n        \n    _key,\n    _type,\n    label,\n    'slug':reference->slug.current,\n\n    },\n    _type == 'linkExternal' => {\n        \n    _key,\n    _type,\n    label,\n    url,\n    newWindow\n\n    }\n\n\t}\n\n        }\n    }\n": SettingsQueryResult;
   }
 }

@@ -1,11 +1,11 @@
 import { defineField, defineType } from 'sanity';
-import { ScrollText } from 'lucide-react';
+import { FolderKanban } from 'lucide-react';
 
 export default defineType({
-  name: 'postListing',
-  title: 'Post Listing',
+  name: 'layout.projects',
+  title: 'Projects',
   type: 'object',
-  icon: ScrollText,
+  icon: FolderKanban,
   fields: [
     defineField({
       name: 'title',
@@ -13,4 +13,11 @@ export default defineType({
       type: 'string',
     }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Projects',
+      };
+    },
+  },
 });
