@@ -6,4 +6,5 @@ export const linkInternalQuery = defineQuery(`
     _type,
     label,
     'slug':reference->slug.current,
+    'documentType':reference->_type,
 `);
