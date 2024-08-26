@@ -1,10 +1,14 @@
 import type { InferGetStaticPropsType, GetStaticProps } from 'next';
 import dynamic from 'next/dynamic';
 
-import { getAllPageSlugs, getPageBySlug } from '@/lib/sanity/queries';
+import {
+  getAllPageSlugs,
+  getPageBySlug,
+  getSettings,
+} from '@/lib/sanity/queries';
 import { getClient } from '@/lib/sanity/client';
 import { sanityReadToken } from '@/lib/sanity/token';
-import { ExpandedPage } from '@/lib/sanity/expanded-types';
+import { ExpandedPage, AppSettings } from '@/lib/sanity/expanded-types';
 import type { SharedPageProps } from '@/pages/_app';
 import { PageLayout } from '@/components/page/PageLayout';
 
@@ -14,18 +18,19 @@ const PageLayoutPreview = dynamic(
 
 interface PageProps extends SharedPageProps {
   page: ExpandedPage;
+  settings: AppSettings;
 }
 
 export default function Page(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-  const { page, draftMode } = props;
+  const { page, settings, draftMode } = props;
 
   if (draftMode) {
-    return <PageLayoutPreview page={page} />;
+    return <PageLayoutPreview page={page} settings={settings} />;
   }
 
-  return <PageLayout page={page} />;
+  return <PageLayout page={page} settings={settings} />;
 }
 
 export const getStaticProps = (async (context) => {
@@ -41,9 +46,12 @@ export const getStaticProps = (async (context) => {
 
   const client = getClient(draftMode ? sanityReadToken : undefined);
 
-  const response = await getPageBySlug(client, slug);
+  const [page, settings] = await Promise.all([
+    getPageBySlug(client, slug),
+    getSettings(client),
+  ]);
 
-  if (!response) {
+  if (!page || !settings) {
     return {
       notFound: true,
     };
@@ -51,7 +59,8 @@ export const getStaticProps = (async (context) => {
 
   return {
     props: {
-      page: response,
+      page,
+      settings,
       draftMode,
       token: draftMode ? sanityReadToken : '',
     },
