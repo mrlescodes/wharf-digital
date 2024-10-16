@@ -9,24 +9,31 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy"
+    "deploy-graphql": "sanity graphql deploy",
+    "extract-schema": "sanity schema extract",
+    "generate-types": "sanity typegen generate",
+    "generate-sanity-types": "pnpm run extract-schema && pnpm run generate-types"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
-    "@sanity/vision": "^3.54.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "sanity": "^3.54.0",
-    "styled-components": "^6.1.12"
+    "@sanity/vision": "^3.61.0",
+    "@t3-oss/env-core": "^0.11.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.453.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "sanity": "catalog:",
+    "styled-components": "^6.1.13",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^4.0.0",
-    "@types/react": "^18.3.3",
-    "eslint": "^8.57.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.5.4"
-  },
-  "packageManager": "pnpm@9.7.0"
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  }
 }
