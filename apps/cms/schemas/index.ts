@@ -1,48 +1,39 @@
 // Singletons
-import settings from './singletons/settings';
+import settings from "./singletons/settings";
 
 // Objects
-import linkInternal from './objects/link-internal';
-import linkExternal from './objects/link-external';
-import pageBuilder from './objects/page-builder';
+import linkExternal from "./objects/link-external";
+import linkInternal from "./objects/link-internal";
 
-// Layouts (core)
-import accordion from './objects/layouts/core/accordion';
-import contentMedia from './objects/layouts/core/content-media';
-import content from './objects/layouts/core/content';
-import hero from './objects/layouts/core/hero';
-import mediaGrid from './objects/layouts/core/media-grid';
-import media from './objects/layouts/core/media';
-import metrics from './objects/layouts/core/metrics';
-
-// Layouts (post)
-import posts from './objects/layouts/post/posts';
-
-// Layouts (project)
-import featuredProjects from './objects/layouts/project/featured-projects';
-import projectIntro from './objects/layouts/project/project-intro';
-import projects from './objects/layouts/project/projects';
-import relatedProject from './objects/layouts/project/related-project';
+// Sections
+import sections from "./sections/sections";
+import accordion from "./sections/core/accordion";
+import contentMedia from "./sections/core/content-media";
+import content from "./sections/core/content";
+import hero from "./sections/core/hero";
+import mediaGrid from "./sections/core/media-grid";
+import media from "./sections/core/media";
+import metrics from "./sections/core/metrics";
 
 // Documents
-import navigation from './documents/navigation';
-import page from './documents/page';
-import post from './documents/post';
-import project from './documents/project';
-import teamMember from './documents/team-member';
+import page from "./documents/page";
+import post from "./documents/post";
+import project from "./documents/project";
 
 export const singletonSchemaTypes = [
   // Singletons
   settings,
 ];
 
+export const pageSchemaTypes = [page];
+
 export const schemaTypes = [
   // Objects
   linkExternal,
   linkInternal,
-  pageBuilder,
 
-  // Layouts (core)
+  // Sections
+  sections,
   accordion,
   contentMedia,
   content,
@@ -51,19 +42,7 @@ export const schemaTypes = [
   media,
   metrics,
 
-  // Layouts (post)
-  posts,
-
-  // Layouts (project)
-  featuredProjects,
-  projectIntro,
-  projects,
-  relatedProject,
-
   // Documents
-  navigation,
-  page,
   post,
   project,
-  teamMember,
 ];
