@@ -1,48 +1,40 @@
-import { defineConfig } from 'sanity';
-import { structureTool } from 'sanity/structure';
-import { presentationTool } from 'sanity/presentation';
-import { visionTool } from '@sanity/vision';
+import { defineConfig } from "sanity";
+import { structureTool } from "sanity/structure";
+import { presentationTool } from "sanity/presentation";
+import { visionTool } from "@sanity/vision";
 
-import { singletonSchemaTypes, schemaTypes } from './schemas';
-import {
-  sanityProjectId,
-  sanityDataset,
-  sanityStudioTitle,
-  sanityStudioPreviewUrl,
-  pageStructure,
-  singletonPlugin,
-} from './utils';
+import { env } from "./env";
+import { singletonPlugin } from "./plugins/singleton";
+import { structureBuilder } from "./plugins/structure";
+import { singletonSchemaTypes, pageSchemaTypes, schemaTypes } from "./schemas";
 
 export default defineConfig({
-  name: 'default',
+  name: "default",
+  title: env.SANITY_STUDIO_SANITY_STUDIO_TITLE,
 
-  projectId: sanityProjectId,
-  dataset: sanityDataset,
-
-  title: sanityStudioTitle,
+  projectId: env.SANITY_STUDIO_SANITY_PROJECT_ID,
+  dataset: env.SANITY_STUDIO_SANITY_DATASET,
 
   plugins: [
-    // Customise the presentation of Singleton documents
+    singletonPlugin(singletonSchemaTypes.map((d) => d.name)),
+
     structureTool({
-      structure: pageStructure(singletonSchemaTypes),
+      structure: structureBuilder(singletonSchemaTypes, pageSchemaTypes),
     }),
 
     visionTool(),
 
     presentationTool({
       previewUrl: {
-        origin: sanityStudioPreviewUrl,
+        origin: env.SANITY_STUDIO_SANITY_STUDIO_PREVIEW_URL,
         draftMode: {
-          enable: '/api/draft',
+          enable: "/api/draft",
         },
       },
     }),
-
-    // Configures the global "new document" button and document actions, to suit Singleton documents
-    singletonPlugin(singletonSchemaTypes.map((d) => d.name)),
   ],
 
   schema: {
-    types: [...singletonSchemaTypes, ...schemaTypes],
+    types: [...singletonSchemaTypes, ...pageSchemaTypes, ...schemaTypes],
   },
 });
