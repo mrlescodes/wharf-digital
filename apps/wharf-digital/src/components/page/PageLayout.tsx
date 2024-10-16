@@ -1,20 +1,22 @@
-import { AppSettings, ExpandedPage } from '@/lib/sanity/expanded-types';
+import { ExpandedPage } from '@/lib/sanity/expanded-types';
 import { PageBuilder } from '../page-builder/PageBuilder';
-import { UIShell } from '../global/UIShell';
+
+import { GlobalLayout } from '../global/GlobalLayout';
+import { SettingsQueryResult } from '@/lib/sanity/types';
 
 export type PageLayoutProps = {
   page: ExpandedPage;
-  settings: AppSettings;
+  settings: SettingsQueryResult;
 };
 
 export const PageLayout = (props: PageLayoutProps) => {
   const { page, settings } = props;
 
   return (
-    <UIShell settings={settings}>
+    <GlobalLayout settings={settings}>
       <h1>{page.title}</h1>
 
       {page.pageBuilder && <PageBuilder layouts={page.pageBuilder} />}
-    </UIShell>
+    </GlobalLayout>
   );
 };

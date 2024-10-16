@@ -37,8 +37,10 @@ export type SanityLinkInternal = {
   documentType: 'page' | null;
 };
 
+export type SanityLinkType = SanityLinkExternal | SanityLinkInternal;
+
 export type AppNavigation = {
-  links: Array<SanityLinkExternal | SanityLinkInternal> | null;
+  links: Array<SanityLinkType> | null;
 };
 
 export type AppSettings = {
