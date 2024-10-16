@@ -1,39 +1,39 @@
-import { defineField, defineType } from 'sanity';
-import { Globe } from 'lucide-react';
+import { defineField, defineType } from "sanity";
+import { Globe } from "lucide-react";
 
 export default defineType({
-  name: 'linkExternal',
-  title: 'External Link',
-  type: 'object',
+  name: "linkExternal",
+  title: "External Link",
+  type: "object",
   icon: Globe,
   fields: [
     defineField({
-      name: 'label',
-      title: 'Label',
-      type: 'string',
+      name: "label",
+      title: "Label",
+      type: "string",
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'url',
-      title: 'URL',
-      type: 'url',
+      name: "url",
+      title: "URL",
+      type: "url",
       validation: (rule) =>
         rule.required().uri({
-          scheme: ['http', 'https', 'mailto', 'tel'],
+          scheme: ["http", "https", "mailto", "tel"],
           allowRelative: true,
         }),
     }),
     defineField({
-      name: 'newWindow',
-      title: 'Open in a new window?',
-      type: 'boolean',
+      name: "newWindow",
+      title: "Open in a new window?",
+      type: "boolean",
       initialValue: true,
     }),
   ],
   preview: {
     select: {
-      label: 'label',
-      url: 'url',
+      label: "label",
+      url: "url",
     },
     prepare(selection) {
       const { label, url } = selection;
@@ -45,7 +45,7 @@ export default defineType({
 
       return {
         title: label,
-        subtitle: subtitle.join(' '),
+        subtitle: subtitle.join(" "),
       };
     },
   },
