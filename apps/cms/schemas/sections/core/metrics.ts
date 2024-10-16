@@ -1,40 +1,40 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
-import { CirclePercent } from 'lucide-react';
+import { defineArrayMember, defineField, defineType } from "sanity";
+import { CirclePercent } from "lucide-react";
 
 export default defineType({
-  name: 'layout.metrics',
-  title: 'Metrics',
-  type: 'object',
+  name: "section.metrics",
+  title: "Metrics",
+  type: "object",
   icon: CirclePercent,
   fields: [
     defineField({
-      name: 'metrics',
-      title: 'Metrics',
-      type: 'array',
+      name: "metrics",
+      title: "Metrics",
+      type: "array",
       of: [
         defineArrayMember({
-          name: 'metric',
-          title: 'Metric',
-          type: 'object',
+          name: "metric",
+          title: "Metric",
+          type: "object",
           icon: false,
           fields: [
             defineField({
-              name: 'value',
-              title: 'Value',
-              type: 'string',
+              name: "value",
+              title: "Value",
+              type: "string",
               validation: (rule) => rule.required(),
             }),
             defineField({
-              name: 'label',
-              title: 'Label',
-              type: 'string',
+              name: "label",
+              title: "Label",
+              type: "string",
               validation: (rule) => rule.required(),
             }),
           ],
           preview: {
             select: {
-              value: 'value',
-              label: 'label',
+              value: "value",
+              label: "label",
             },
             prepare: ({ value, label }) => ({
               title: value,
@@ -48,7 +48,7 @@ export default defineType({
   preview: {
     prepare() {
       return {
-        title: 'Metrics',
+        title: "Metrics",
       };
     },
   },
