@@ -1,37 +1,37 @@
-import { defineField, defineType } from 'sanity';
-import { Presentation } from 'lucide-react';
+import { defineField, defineType } from "sanity";
+import { Presentation } from "lucide-react";
 
 export default defineType({
-  name: 'project',
-  title: 'Project',
-  type: 'document',
+  name: "project",
+  title: "Project",
+  type: "document",
   icon: Presentation,
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
+      name: "title",
+      title: "Title",
+      type: "string",
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
+      name: "slug",
+      title: "Slug",
+      type: "slug",
       options: {
-        source: 'title',
+        source: "title",
         maxLength: 96,
       },
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'pageBuilder',
-      title: 'Page Builder',
-      type: 'pageBuilder',
+      name: "sections",
+      title: "Sections",
+      type: "sections",
     }),
   ],
   preview: {
     select: {
-      title: 'title',
+      title: "title",
     },
   },
 });
