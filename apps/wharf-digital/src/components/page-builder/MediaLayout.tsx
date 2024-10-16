@@ -1,7 +1,7 @@
 import { css } from 'styled-system/css';
 
 import type { LayoutMedia } from '@/lib/sanity/types';
-import { SanityImage } from '../SanityImage';
+import { SanityImage } from '@/components/shared/SanityImage';
 
 type MediaLayoutProps = LayoutMedia;
 

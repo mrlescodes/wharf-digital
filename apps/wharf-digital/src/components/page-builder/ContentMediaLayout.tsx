@@ -2,7 +2,7 @@ import { PortableText } from 'next-sanity';
 import { css } from 'styled-system/css';
 
 import type { LayoutContentMedia } from '@/lib/sanity/types';
-import { SanityImage } from '../SanityImage';
+import { SanityImage } from '@/components/shared/SanityImage';
 
 type ContentMediaLayoutProps = LayoutContentMedia;
 

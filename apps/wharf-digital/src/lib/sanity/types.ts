@@ -1383,8 +1383,14 @@ export type ProjectQueryResult = {
 
 // Source: ../wharf-digital/src/lib/sanity/queries/settings.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0]{        headerMenu->{                ...,    links[]{            _type == 'linkInternal' => {            _key,    _type,    label,    'slug':reference->slug.current,    },    _type == 'linkExternal' => {            _key,    _type,    label,    url,    newWindow    }	}        }    }
+// Query: *[_type == "settings"][0]{        ...,        headerMenu->{                ...,    links[]{            _type == 'linkInternal' => {            _key,    _type,    label,    'slug':reference->slug.current,    'documentType':reference->_type,    },    _type == 'linkExternal' => {            _key,    _type,    label,    url,    newWindow    }	}        }    }
 export type SettingsQueryResult = {
+  _id: string;
+  _type: 'settings';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
   headerMenu: {
     _id: string;
     _type: 'navigation';
@@ -1405,6 +1411,7 @@ export type SettingsQueryResult = {
           _type: 'linkInternal';
           label: string | null;
           slug: string | null;
+          documentType: 'page' | null;
         }
     > | null;
   } | null;
@@ -1422,6 +1429,6 @@ declare module '@sanity/client' {
     '\n    *[_type == "project" && defined(slug)]\n': ProjectsQueryResult;
     '\n    *[_type == "project" && defined(slug.current)][].slug.current\n': ProjectSlugsQueryResult;
     '\n    *[_type == "project" && slug.current == $slug][0]{\n      ...,\n      pageBuilder[] {\n        \n    ...,\n    _type == \'layout.posts\' => {\n        "posts": *[_type == "post" && defined(slug)],\n    },\n    _type == \'layout.featuredProjects\' => {\n        projects[]->{\n            _id,\n            _type,\n            title,\n            slug,\n        }\n    },\n    _type == \'layout.projects\' => {\n        "projects": *[_type == "project" && defined(slug)]{\n            _id,\n            _type,\n            title,\n            slug,\n        },\n    },\n    _type == \'layout.relatedProject\' => {\n        project->{\n            _id,\n            _type,\n            title,\n            slug,\n        }\n    },\n\n      }\n    }\n': ProjectQueryResult;
-    "\n    *[_type == \"settings\"][0]{\n        headerMenu->{\n            \n    ...,\n    links[]{\n        \n    _type == 'linkInternal' => {\n        \n    _key,\n    _type,\n    label,\n    'slug':reference->slug.current,\n\n    },\n    _type == 'linkExternal' => {\n        \n    _key,\n    _type,\n    label,\n    url,\n    newWindow\n\n    }\n\n\t}\n\n        }\n    }\n": SettingsQueryResult;
+    "\n    *[_type == \"settings\"][0]{\n        ...,\n        headerMenu->{\n            \n    ...,\n    links[]{\n        \n    _type == 'linkInternal' => {\n        \n    _key,\n    _type,\n    label,\n    'slug':reference->slug.current,\n    'documentType':reference->_type,\n\n    },\n    _type == 'linkExternal' => {\n        \n    _key,\n    _type,\n    label,\n    url,\n    newWindow\n\n    }\n\n\t}\n\n        }\n    }\n": SettingsQueryResult;
   }
 }

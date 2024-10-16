@@ -5,6 +5,7 @@ import { navigationQuery } from './fragments/navigation';
 
 export const settingsQuery = defineQuery(`
     *[_type == "settings"][0]{
+        ...,
         headerMenu->{
             ${navigationQuery}
         }

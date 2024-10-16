@@ -1,26 +1,23 @@
 import { css } from 'styled-system/css';
 
 import { Logo } from '@/assets/logo';
-import { Layout } from '@/components/Layout';
 
 export default function HomePage() {
   return (
-    <Layout>
-      <div
+    <div
+      className={css({
+        py: 12,
+      })}
+    >
+      <Logo />
+
+      <p
         className={css({
-          py: 12,
+          marginTop: 4,
         })}
       >
-        <Logo />
-
-        <p
-          className={css({
-            marginTop: 4,
-          })}
-        >
-          Crafted Digital Experiences
-        </p>
-      </div>
-    </Layout>
+        Crafted Digital Experiences
+      </p>
+    </div>
   );
 }
