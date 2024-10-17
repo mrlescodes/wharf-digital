@@ -1,16 +1,15 @@
-import { VisualEditing } from '@sanity/visual-editing/next-pages-router';
-import { AppProps } from 'next/app';
-import { lazy, Suspense } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { VisualEditing } from "@sanity/visual-editing/next-pages-router";
+import { AppProps } from "next/app";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import { AnimatePresence } from "framer-motion";
 
-import '@/styles/globals.css';
+import { SharedPageProps } from "@/types";
+import "@/styles/globals.css";
 
-export interface SharedPageProps {
-  draftMode: boolean;
-  token: string;
-}
-
-const PreviewProvider = lazy(() => import('@/components/PreviewProvider'));
+const PreviewProvider = dynamic(() =>
+  import("@/components/PreviewProvider").then((mod) => mod.PreviewProvider)
+);
 
 export default function App({
   Component,
